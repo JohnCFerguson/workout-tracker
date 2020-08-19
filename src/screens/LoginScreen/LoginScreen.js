@@ -23,20 +23,22 @@ export default function LoginScreen({navigation}) {
             >
                 <TextInput
                     style={styles.input}
-                    placeholder='E-Mail'
-                    placeholderTextColor='#aaaaaa'
+                    placeholder='E-mail'
+                    placeholderTextColor="#aaaaaa"
                     onChangeText={(text) => setEmail(text)}
                     value={email}
-                    underlineColorAndroid='transparent'
-                    autoCapitalize='none'
+                    underlineColorAndroid="transparent"
+                    autoCapitalize="none"
                 />
                 <TextInput
                     style={styles.input}
-                    placeHolderTextColor='#aaaaaa'
+                    placeholderTextColor="#aaaaaa"
                     secureTextEntry
-                    placeholderTextColor='Password'
+                    placeholder='Password'
                     onChangeText={(text) => setPassword(text)}
                     value={password}
+                    underlineColorAndroid="transparent"
+                    autoCapitalize="none"
                 />
                 <TouchableOpacity
                     style={styles.button}
@@ -44,8 +46,8 @@ export default function LoginScreen({navigation}) {
                     <Text style={styles.buttonTitle}>Log In</Text>
                 </TouchableOpacity>
                 <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Don't have an account?
-                        <Text onPress={onFooterLinkPress} style={styles.foorerLink}>Sign Up</Text>
+                    <Text style={styles.footerText}>Don't have an account? 
+                        <Text onPress={onFooterLinkPress} style={styles.foorerLink}> Sign Up</Text>
                     </Text>
                 </View>
             </KeyboardAwareScrollView>
