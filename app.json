@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "React Native Firebase",
-    "slug": "react-native-firebase",
+    "name": "Workout Tracker",
+    "slug": "workout-tracker",
     "platforms": [
       "ios",
       "android",
@@ -24,7 +24,6 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "Built by the team behind https://www.instamobile.io https://www.iosapptemplates.com https://www.instaflutter.com and https://www.instakotlin.com",
-    "githubUrl": "https://github.com/instamobile/react-native-firebase"
+    "githubUrl": "https://github.com/JohnCFerguson/workout-tracker"
   }
 }

@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View, Button } from 'react-native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import styles from './styles';
 import { firebase } from '../../firebase/config'
+import { NavigationContainer } from '@react-navigation/native'
+import ExerciseScreen from '../ExerciseScreen/ExerciseScreen';
+//import { ExerciseScreen } from './../ExerciseScreen/ExerciseScreen'
+
+const Tab = createBottomTabNavigator();
 
 export default function HomeScreen(props) {
 
@@ -10,6 +16,7 @@ export default function HomeScreen(props) {
 
     const entityRef = firebase.firestore().collection('entities')
     const userID = props.extraData.id
+    const navigation = props.navigation
 
     useEffect(() => {
         entityRef
@@ -61,32 +68,46 @@ export default function HomeScreen(props) {
         )
     }
 
-    return (
-        <View style={styles.container}>
-            <View style={styles.formContainer}>
-                <TextInput
-                    style={styles.input}
-                    placeholder='Add new entity'
-                    placeholderTextColor="#aaaaaa"
-                    onChangeText={(text) => setEntityText(text)}
-                    value={entityText}
-                    underlineColorAndroid="transparent"
-                    autoCapitalize="none"
-                />
-                <TouchableOpacity style={styles.button} onPress={onAddButtonPress}>
-                    <Text style={styles.buttonText}>Add</Text>
+    const WorkoutScreen = () => {
+        return(
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => {
+                    firebase.auth().signOut()
+                }}>
+                    <Text>Sign Out</Text>
                 </TouchableOpacity>
-            </View>
-            { entities && (
-                <View style={styles.listContainer}>
-                    <FlatList
-                        data={entities}
-                        renderItem={renderEntity}
-                        keyExtractor={(item) => item.id}
-                        removeClippedSubviews={true}
+                <View style={styles.formContainer}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Add new entity'
+                        placeholderTextColor="#aaaaaa"
+                        onChangeText={(text) => setEntityText(text)}
+                        value={entityText}
+                        underlineColorAndroid="transparent"
+                        autoCapitalize="none"
                     />
+                    <TouchableOpacity style={styles.button} onPress={onAddButtonPress}>
+                        <Text style={styles.buttonText}>Add</Text>
+                    </TouchableOpacity>
                 </View>
-            )}
-        </View>
-    )
+                { entities && (
+                    <View style={styles.listContainer}>
+                        <FlatList
+                            data={entities}
+                            renderItem={renderEntity}
+                            keyExtractor={(item) => item.id}
+                            removeClippedSubviews={true}
+                        />
+                    </View>
+                )}
+            </View>
+        )
+    }
+
+    return (
+        <Tab.Navigator>
+          <Tab.Screen name="Workouts" component={WorkoutScreen} />
+          <Tab.Screen name="Exercises" component={ExerciseScreen} />
+        </Tab.Navigator>
+    );
 }

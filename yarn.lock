@@ -1234,10 +1234,11 @@
   integrity sha1-0WiVZrlMJUI9H7LLAxxcLqTJ+Tk=
 
 "@grpc/grpc-js@^1.0.0":
-  version "1.1.3"
-  resolved "https://repo.test.netflix.net/artifactory/api/npm/npm-netflix/@grpc/grpc-js/-/grpc-js-1.1.3.tgz#0b91b166d744b6a43b00430dceff0f0ff88c98d5"
-  integrity sha1-C5GxZtdEtqQ7AEMNzv8PD/iMmNU=
+  version "1.1.4"
+  resolved "https://repo.test.netflix.net/artifactory/api/npm/npm-netflix/@grpc/grpc-js/-/grpc-js-1.1.4.tgz#ef6c78ccac068e5421fee7aa6359da4446068a15"
+  integrity sha1-72x4zKwGjlQh/ueqY1naREYGihU=
   dependencies:
+    "@types/node" "^12.12.47"
     semver "^6.2.0"
 
 "@grpc/proto-loader@^0.5.0":
@@ -1484,6 +1485,14 @@
   resolved "https://repo.test.netflix.net/artifactory/api/npm/npm-netflix/@react-native-community/masked-view/-/masked-view-0.1.6.tgz#c7f2ac187c1f25aa8c30d11baa8f4398eca3bb84"
   integrity sha1-x/KsGHwfJaqMMNEbqo9DmOyju4Q=
 
+"@react-navigation/bottom-tabs@^5.8.0":
+  version "5.8.0"
+  resolved "https://repo.test.netflix.net/artifactory/api/npm/npm-netflix/@react-navigation/bottom-tabs/-/bottom-tabs-5.8.0.tgz#d7386809bceeead0adcaacf61b6563be9cefd5cb"
+  integrity sha1-1zhoCbzu6tCtyqz2G2Vjvpzv1cs=
+  dependencies:
+    color "^3.1.2"
+    react-native-iphone-x-helper "^1.2.1"
+
 "@react-navigation/core@^5.12.3":
   version "5.12.3"
   resolved "https://repo.test.netflix.net/artifactory/api/npm/npm-netflix/@react-navigation/core/-/core-5.12.3.tgz#0484fcca290569a0dc10b70b99f00edd3f1fd93c"
@@ -1575,6 +1584,11 @@
   version "4.0.1"
   resolved "https://repo.test.netflix.net/artifactory/api/npm/npm-netflix/@types/long/-/long-4.0.1.tgz#459c65fa1867dafe6a8f322c4c51695663cc55e9"
   integrity sha1-RZxl+hhn2v5qjzIsTFFpVmPMVek=
+
+"@types/node@^12.12.47":
+  version "12.12.54"
+  resolved "https://repo.test.netflix.net/artifactory/api/npm/npm-netflix/@types/node/-/node-12.12.54.tgz#a4b58d8df3a4677b6c08bfbc94b7ad7a7a5f82d1"
+  integrity sha1-pLWNjfOkZ3tsCL+8lLetenpfgtE=
 
 "@types/node@^13.7.0":
   version "13.13.15"
@@ -2553,9 +2567,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.523:
-  version "1.3.536"
-  resolved "https://repo.test.netflix.net/artifactory/api/npm/npm-netflix/electron-to-chromium/-/electron-to-chromium-1.3.536.tgz#78a4ff753111283489f3b6ad19664902245ab876"
-  integrity sha1-eKT/dTERKDSJ87atGWZJAiRauHY=
+  version "1.3.539"
+  resolved "https://repo.test.netflix.net/artifactory/api/npm/npm-netflix/electron-to-chromium/-/electron-to-chromium-1.3.539.tgz#9952fb0bf3fb4295282e7df35f6e7a2a8b89d3fd"
+  integrity sha1-mVL7C/P7QpUoLn3zX256KouJ0/0=
 
 encodeurl@~1.0.2:
   version "1.0.2"
