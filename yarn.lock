@@ -991,7 +991,7 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
-"@expo/vector-icons@^10.0.2":
+"@expo/vector-icons@^10.0.2", "@expo/vector-icons@^10.2.0":
   version "10.2.0"
   resolved "https://repo.test.netflix.net/artifactory/api/npm/npm-netflix/@expo/vector-icons/-/vector-icons-10.2.0.tgz#3c70656683a6a873e18efc00bc61fc160a80dc55"
   integrity sha1-PHBlZoOmqHPhjvwAvGH8FgqA3FU=
@@ -4815,6 +4815,13 @@ react-dom@~16.9.0:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.15.0"
+
+react-icons@^3.11.0:
+  version "3.11.0"
+  resolved "https://repo.test.netflix.net/artifactory/api/npm/npm-netflix/react-icons/-/react-icons-3.11.0.tgz#2ca2903dfab8268ca18ebd8cc2e879921ec3b254"
+  integrity sha1-LKKQPfq4Joyhjr2Mwuh5kh7DslQ=
+  dependencies:
+    camelcase "^5.0.0"
 
 react-is@^16.12.0, react-is@^16.13.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.13.1"
