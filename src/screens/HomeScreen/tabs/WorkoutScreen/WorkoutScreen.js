@@ -4,6 +4,7 @@ import { firebase } from './../../../../firebase/config'
 import styles from './styles';
 
 export default function WorkoutScreen(props) {
+
     const [entityText, setEntityText] = useState('')
     const [entities, setEntities] = useState([])
 

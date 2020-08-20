@@ -6,6 +6,7 @@ export default function ExerciseScreen(props) {
 
     return (
         <View style={styles.container}>
+            <Text>Exercise!</Text>
         </View>
     )
 }
