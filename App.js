@@ -1,8 +1,12 @@
 import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react'
+import { AppearanceProvider, Appearance, useColorScheme } from 'react-native-appearance'
 import { View } from 'react-native'
 import { firebase } from './src/firebase/config'
-import { NavigationContainer } from '@react-navigation/native'
+import { 
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme, } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { LoginScreen, HomeScreen, RegistrationScreen } from './src/screens'
 import {decode, encode} from 'base-64'
@@ -13,6 +17,8 @@ if (!global.atob) { global.atob = decode }
 const Stack = createStackNavigator();
 
 export default function App() {
+
+  const scheme = useColorScheme();
 
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null)
@@ -46,32 +52,34 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        { user ? (
-          <Stack.Screen name="Home"
-          options={{
-            headerTitle: "Track your Workout",
-            headerRight: () => (
-                <FontAwesome.Button
-                  name="sign-out"
-                  color="#000000"
-                  backgroundColor='#ffffff'
-                  onPress={() => firebase.auth().signOut()}
-                  style={{justiftyContent:"center", alignItems:"center"}}
-                />
-            ),
-          }}
-          >
-            {props => <HomeScreen {...props} extraData={user} />}
-          </Stack.Screen>
-        ) : (
-          <>
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Registration" component={RegistrationScreen} />
-          </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <AppearanceProvider>
+      <NavigationContainer theme={scheme ==='dark' ? DarkTheme : DefaultTheme}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          { user ? (
+            <Stack.Screen name="Home"
+            options={{
+              headerTitle: "Track your Workout",
+              headerRight: () => (
+                  <FontAwesome.Button
+                    name="sign-out"
+                    color="#000000"
+                    backgroundColor='#ffffff'
+                    onPress={() => firebase.auth().signOut()}
+                    style={{justiftyContent:"center", alignItems:"center"}}
+                  />
+              ),
+            }}
+            >
+              {props => <HomeScreen {...props} extraData={user} />}
+            </Stack.Screen>
+          ) : (
+            <>
+              <Stack.Screen name="Login" component={LoginScreen} />
+              <Stack.Screen name="Registration" component={RegistrationScreen} />
+            </>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AppearanceProvider>
   );
 }

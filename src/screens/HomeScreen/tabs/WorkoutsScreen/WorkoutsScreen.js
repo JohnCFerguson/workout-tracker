@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { WorkoutsHome, WorkoutContextScreen } from './screens'
 import { firebase } from './../../../../firebase/config'
 import { FontAwesome } from '@expo/vector-icons'
+import styles from './styles'
 
 //import { ExerciseScreen } from './tabs/ExerciseScreen/ExerciseScreen'
 //import { WorkoutScreen } from './tabs/WorkoutScreen/WorkoutScreen'
@@ -50,14 +51,12 @@ export default function HomeScreen(props) {
     }
 
     return (
-        <WorkoutStack.Navigator screenOptions={{ headerShown: true,
+        <WorkoutStack.Navigator screenOptions={{ 
+            headerShown: true,
             headerRight: () => (
                 <FontAwesome.Button
                 name="sign-out"
-                color="#000000"
-                backgroundColor='#ffffff'
                 onPress={() => firebase.auth().signOut()}
-                style={{justiftyContent:"center", alignItems:"center"}}
                 />),
             }}
         >

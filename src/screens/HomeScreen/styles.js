@@ -5,6 +5,9 @@ export default StyleSheet.create({
         flex: 1,
         alignItems: 'center'
     },
+    tabs: {
+
+    },
     formContainer: {
         flexDirection: 'row',
         height: 80,
@@ -30,13 +33,11 @@ export default StyleSheet.create({
     button: {
         height: 47,
         borderRadius: 5,
-        backgroundColor: '#788eec',
         width: 80,
         alignItems: "center",
         justifyContent: 'center'
     },
     buttonText: {
-        color: 'white',
         fontSize: 16
     },
     listContainer: {
@@ -45,12 +46,10 @@ export default StyleSheet.create({
     },
     entityContainer: {
         marginTop: 16,
-        borderBottomColor: '#cccccc',
         borderBottomWidth: 1,
         paddingBottom: 16
     },
     entityText: {
         fontSize: 20,
-        color: '#333333'
     }
 })

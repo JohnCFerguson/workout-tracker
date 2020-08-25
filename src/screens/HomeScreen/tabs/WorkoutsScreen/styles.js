@@ -5,6 +5,9 @@ export default StyleSheet.create({
         flex: 1,
         alignItems: 'center'
     },
+    header: {
+
+    },
     cardContainer: {
         flex: 1,
         alignItems: 'center',
@@ -29,14 +32,12 @@ export default StyleSheet.create({
         height: 48,
         borderRadius: 10,
         overflow: 'hidden',
-        backgroundColor: '#f0f0f0',
         marginTop: 10,
         marginBottom: 10,
         paddingLeft: 20,
         paddingRight: 16
     },
     button: {
-        backgroundColor: '#ffffff',
         height: 44,
         width: 296,
         borderRadius: 50,
@@ -44,7 +45,6 @@ export default StyleSheet.create({
         justifyContent: 'center'
     },
     buttonTitle: {
-        color: 'white',
         fontSize: 16,
         fontWeight: "bold"
     },
@@ -55,10 +55,8 @@ export default StyleSheet.create({
     },
     footerText: {
         fontSize: 16,
-        color: '#2e2e2d'
     },
     footerLink: {
-        color: "#788eec",
         fontWeight: "bold",
         fontSize: 16
     },
@@ -82,7 +80,6 @@ export default StyleSheet.create({
     },
     modalView: {
         margin: 20,
-        backgroundColor: "white",
         borderRadius: 20,
         padding: 35,
         shadowColor: "#000",
@@ -95,7 +92,6 @@ export default StyleSheet.create({
         elevation: 5
     },
     modalButton: {
-        backgroundColor: '#ffffff',
         height: 44,
         width: 196,
         borderRadius: 50,
@@ -110,12 +106,11 @@ export default StyleSheet.create({
         borderRadius: 25
     },
     textStyle: {
-        color: "white",
         fontWeight: "bold",
         textAlign: "center"
     },
     modalText: {
         marginBottom: 15,
         textAlign: "center"
-    }
+    },
 })

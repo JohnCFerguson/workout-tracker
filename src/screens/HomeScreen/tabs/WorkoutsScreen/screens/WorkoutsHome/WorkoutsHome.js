@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, TouchableHighlight, View, Modal, Alert } from 'react-native'
+import { AppearanceProvider, Appearance, useColorScheme } from 'react-native-appearance'
+import { useTheme } from '@react-navigation/native'
 import { Card } from 'react-native-elements'
 import { LinearGradient } from 'expo-linear-gradient'
 import { firebase } from '../../../../../../firebase/config'
 import styles from './styles';
 
 export default function WorkoutsHome(props) {
+
+    const { colors } = useTheme();
 
     const [entityText, setEntityText] = useState('')
     const [entities, setEntities] = useState([])
@@ -128,8 +132,10 @@ export default function WorkoutsHome(props) {
                             start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}}
                             style={styles.gradient}
                             >
-                                <TouchableHighlight style={styles.button} onPress={() => setModalVisible(true)}>
-                                    <Text style={styles.buttonText}>Add Workout</Text>
+                                <TouchableHighlight style={{backgroundColor: colors.background
+                                
+                                }} onPress={() => setModalVisible(true)}>
+                                    <Text /*style={styles.buttonText}*/>Add Workout</Text>
                                 </TouchableHighlight>
                         </LinearGradient>
                     </View>

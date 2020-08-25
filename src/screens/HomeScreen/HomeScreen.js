@@ -1,6 +1,7 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { ExerciseScreen, WorkoutsScreen } from './tabs'
+import styles from './styles'
 //import { ExerciseScreen } from './tabs/ExerciseScreen/ExerciseScreen'
 //import { WorkoutScreen } from './tabs/WorkoutScreen/WorkoutScreen'
 

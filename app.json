@@ -24,6 +24,7 @@
     "ios": {
       "supportsTablet": true
     },
+    "userInterfaceStyle": "automatic",
     "githubUrl": "https://github.com/JohnCFerguson/workout-tracker"
   }
 }
