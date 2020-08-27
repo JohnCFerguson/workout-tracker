@@ -11,7 +11,7 @@ export default function WorkoutsHome(props) {
     const [workouts, setWorkouts] = useState([])
     const [addModalVisible, setAddModalVisible] = useState(false);
     const [exerciseName, setExerciseName] = useState('')
-    const [weeks, setWeek] = useState({})
+    const [weeks, setWeeks] = useState({})
     const [days, setDay] = useState({})
 
     const userID = props.extraData.id
@@ -23,11 +23,15 @@ export default function WorkoutsHome(props) {
 
     async function _getWorkoutData() {
             try{
+                let obj = {}
                 await entityRef.get().then(doc => {
                     for (const [key, value] of Object.entries(doc.data())) {
+                        
                         if(key != 'authorID' && key != 'text' && key != 'createdAt')
-                            weeks[key] =  value;
+                            obj[key] =  value;
                       }
+
+                      setWeeks(obj)
                 })
             }
             catch (err) {
@@ -36,21 +40,18 @@ export default function WorkoutsHome(props) {
     }
 
     useEffect(() => {
-        _getWorkoutData()
         entityRef.get().then(doc => {
-                const newEntities = []
-                doc.forEach(doc => {
-                    const entity = doc.data()
-                    entity.id = doc.id
-                    console.log(entity)
-                    newEntities.push(entity)
-                });
-                setWorkouts(newEntities)
-            },
-            error => {
-                console.log(error)
-            }
-        )*/
+            let obj = {}
+            for (const [key, value] of Object.entries(doc.data())) {
+                
+                if(key != 'authorID' && key != 'text' && key != 'createdAt')
+                    weeks[key] =  value;
+              }
+              console.log(weeks)
+        })
+        error => {
+            console.log(error)
+        }
     }, [])
 
     const onAddButtonPress = () => {
@@ -90,11 +91,11 @@ export default function WorkoutsHome(props) {
     const renderEntity = ({item, index}) => {
         return (
             <View>
-                <TouchableOpacity onPress={() => {props.navigation.navigate(item.exerciseID)}}>
+                <TouchableOpacity onPress={() => {props.navigation.navigate(item)}}>
                     <Card containerStyle={styles.cardContainer}>
-                    {/*react-native-elements Card*/}
+                    {/*react-native-elements Card*/ console.log(item)}
                         <Text style={styles.card}>
-                            {item.text}
+                            {item}
                         </Text>
                     </Card>
                 </TouchableOpacity>
@@ -149,12 +150,12 @@ export default function WorkoutsHome(props) {
     return(
         <View style={styles.container}>
             { addModal() }
-            { workouts && (
+            { weeks && (
                 <View style={styles.listContainer}>
                     <FlatList
-                        data={workouts}
+                        data={Object.keys(weeks)}
                         renderItem={renderEntity}
-                        keyExtractor={(item) => item.id}
+                        keyExtractor={(key) => key}
                         removeClippedSubviews={true}
                     />
                 </View>
