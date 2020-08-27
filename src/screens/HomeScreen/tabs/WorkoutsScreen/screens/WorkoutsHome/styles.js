@@ -36,7 +36,6 @@ export default StyleSheet.create({
         paddingRight: 16
     },
     button: {
-        backgroundColor: '#ffffff',
         height: 44,
         width: 296,
         borderRadius: 50,
@@ -44,7 +43,6 @@ export default StyleSheet.create({
         justifyContent: 'center'
     },
     buttonTitle: {
-        color: 'white',
         fontSize: 16,
         fontWeight: "bold"
     },
@@ -82,7 +80,6 @@ export default StyleSheet.create({
     },
     modalView: {
         margin: 20,
-        backgroundColor: "white",
         borderRadius: 20,
         padding: 35,
         shadowColor: "#000",
@@ -95,7 +92,6 @@ export default StyleSheet.create({
         elevation: 5
     },
     modalButton: {
-        backgroundColor: '#ffffff',
         height: 44,
         width: 196,
         borderRadius: 50,

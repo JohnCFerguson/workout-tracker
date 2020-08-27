@@ -69,9 +69,9 @@ export default function WorkoutsHome(props) {
         return (
             <View>
                 <TouchableOpacity onPress={() => {props.navigation.navigate(item.text)}}>
-                    <Card containerStyle={styles.cardContainer}>
+                    <Card containerStyle={[{backgroundColor: colors.border}, styles.cardContainer]}>
                     {/*react-native-elements Card*/}
-                        <Text style={styles.card}>
+                        <Text style={{color: colors.text}}>
                             {item.text}
                         </Text>
                     </Card>
@@ -89,7 +89,7 @@ export default function WorkoutsHome(props) {
                 visible={modalVisible}
               >
                 <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
+                    <View style={[{backgroundColor: colors.border}, styles.modalView]}>
                         <TextInput
                             style={styles.input}
                             placeholder='Workout Name'
@@ -104,8 +104,8 @@ export default function WorkoutsHome(props) {
                             start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}}
                             style={styles.modalGradient}
                             >
-                                <TouchableHighlight style={styles.modalButton} onPress={onAddButtonPress}>
-                                    <Text style={styles.buttonText}>Done</Text>
+                                <TouchableHighlight style={[{backgroundColor: colors.border}, styles.modalButton]} onPress={onAddButtonPress}>
+                                    <Text style={[{color: colors.text}, styles.buttonText]}>Done</Text>
                                 </TouchableHighlight>
                         </LinearGradient>
                     </View>
@@ -132,10 +132,8 @@ export default function WorkoutsHome(props) {
                             start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}}
                             style={styles.gradient}
                             >
-                                <TouchableHighlight style={{backgroundColor: colors.background
-                                
-                                }} onPress={() => setModalVisible(true)}>
-                                    <Text /*style={styles.buttonText}*/>Add Workout</Text>
+                                <TouchableHighlight style={[{backgroundColor: colors.border}, styles.button]} onPress={() => setModalVisible(true)}>
+                                    <Text style={{color: colors.text}}>Add Workout</Text>
                                 </TouchableHighlight>
                         </LinearGradient>
                     </View>

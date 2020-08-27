@@ -2,8 +2,9 @@ import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react'
 import { AppearanceProvider, Appearance, useColorScheme } from 'react-native-appearance'
 import { View } from 'react-native'
+import { FontAwesome } from '@expo/vector-icons'
 import { firebase } from './src/firebase/config'
-import { 
+import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme, } from '@react-navigation/native'
@@ -56,20 +57,7 @@ export default function App() {
       <NavigationContainer theme={scheme ==='dark' ? DarkTheme : DefaultTheme}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           { user ? (
-            <Stack.Screen name="Home"
-            options={{
-              headerTitle: "Track your Workout",
-              headerRight: () => (
-                  <FontAwesome.Button
-                    name="sign-out"
-                    color="#000000"
-                    backgroundColor='#ffffff'
-                    onPress={() => firebase.auth().signOut()}
-                    style={{justiftyContent:"center", alignItems:"center"}}
-                  />
-              ),
-            }}
-            >
+            <Stack.Screen name="Home">
               {props => <HomeScreen {...props} extraData={user} />}
             </Stack.Screen>
           ) : (

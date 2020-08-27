@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
+import { useTheme } from '@react-navigation/native'
 import { WorkoutsHome, WorkoutContextScreen } from './screens'
 import { firebase } from './../../../../firebase/config'
 import { FontAwesome } from '@expo/vector-icons'
@@ -11,6 +12,8 @@ import styles from './styles'
 const WorkoutStack = createStackNavigator();
 
 export default function HomeScreen(props) {
+
+    const { colors } = useTheme();
 
     const [entities, setEntities] = useState([])
 
@@ -51,11 +54,16 @@ export default function HomeScreen(props) {
     }
 
     return (
-        <WorkoutStack.Navigator screenOptions={{ 
+        <WorkoutStack.Navigator screenOptions={{
             headerShown: true,
+            headerStyle: {
+                backgroundColor: colors.card,
+            },
             headerRight: () => (
                 <FontAwesome.Button
                 name="sign-out"
+                color={colors.text}
+                backgroundColor={colors.card}
                 onPress={() => firebase.auth().signOut()}
                 />),
             }}

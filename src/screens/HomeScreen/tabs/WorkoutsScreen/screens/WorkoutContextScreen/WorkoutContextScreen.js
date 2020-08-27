@@ -11,35 +11,46 @@ export default function WorkoutsHome(props) {
     const [workouts, setWorkouts] = useState([])
     const [addModalVisible, setAddModalVisible] = useState(false);
     const [exerciseName, setExerciseName] = useState('')
-    const [weekID, setWeekID] = useState('')
-    const [dayID, setDayID] = useState('')
+    const [week, setWeek] = useState('')
+    const [day, setDay] = useState('')
     const [sets, setSets] =  useState('')
 
-    const entityRef = firebase.firestore().collection('entities')
-    const exerciseRef = firebase.firestore().collection('exercises')
-    const workoutRef =  firebase.firestore().collection('workouts')
     const userID = props.extraData.id
     const workoutID = props.id
     const navigation = props.navigation
 
+    const entityRef = firebase.firestore().collection('entities').doc(workoutID)
+    const exerciseRef = firebase.firestore().collection('exercises')
+
+    async function _getWorkoutData() {
+            try{
+                await entityRef.get().then(doc => {
+                    for (const [key, value] of Object.entries(doc.data())) {
+                        console.log(`${key}: ${value}`);
+                      }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+    }
+
     useEffect(() => {
-        //alert(workoutRef.where("workoutID", "==", workoutID))
-        workoutRef
-            .where("workoutID", "==", workoutID)
-            .onSnapshot(
-                querySnapshot => {
-                    const newEntities = []
-                    querySnapshot.forEach(doc => {
-                        const entity = doc.data()
-                        entity.id = doc.id
-                        newEntities.push(entity)
-                    });
-                    setWorkouts(newEntities)
-                },
-                error => {
-                    console.log(error)
-                }
-            )
+        _getWorkoutData()
+        /*entityRef.get().then(doc => {
+                const newEntities = []
+                doc.forEach(doc => {
+                    const entity = doc.data()
+                    entity.id = doc.id
+                    console.log(entity)
+                    newEntities.push(entity)
+                });
+                setWorkouts(newEntities)
+            },
+            error => {
+                console.log(error)
+            }
+        )*/
     }, [])
 
     const onAddButtonPress = () => {
@@ -83,7 +94,7 @@ export default function WorkoutsHome(props) {
                     <Card containerStyle={styles.cardContainer}>
                     {/*react-native-elements Card*/}
                         <Text style={styles.card}>
-                            {item.exerciseID}
+                            {item.text}
                         </Text>
                     </Card>
                 </TouchableOpacity>
