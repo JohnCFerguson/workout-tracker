@@ -11,9 +11,8 @@ export default function WorkoutsHome(props) {
     const [workouts, setWorkouts] = useState([])
     const [addModalVisible, setAddModalVisible] = useState(false);
     const [exerciseName, setExerciseName] = useState('')
-    const [week, setWeek] = useState('')
-    const [day, setDay] = useState('')
-    const [sets, setSets] =  useState('')
+    const [weeks, setWeek] = useState({})
+    const [days, setDay] = useState({})
 
     const userID = props.extraData.id
     const workoutID = props.id
@@ -26,7 +25,8 @@ export default function WorkoutsHome(props) {
             try{
                 await entityRef.get().then(doc => {
                     for (const [key, value] of Object.entries(doc.data())) {
-                        console.log(`${key}: ${value}`);
+                        if(key != 'authorID' && key != 'text' && key != 'createdAt')
+                            weeks[key] =  value;
                       }
                 })
             }
@@ -37,7 +37,7 @@ export default function WorkoutsHome(props) {
 
     useEffect(() => {
         _getWorkoutData()
-        /*entityRef.get().then(doc => {
+        entityRef.get().then(doc => {
                 const newEntities = []
                 doc.forEach(doc => {
                     const entity = doc.data()
