@@ -18,41 +18,25 @@ export default function WorkoutsHome(props) {
     const workoutID = props.id
     const navigation = props.navigation
 
-    const entityRef = firebase.firestore().collection('entities').doc(workoutID)
+    const entityRef = firebase.firestore().collection('entities')
     const exerciseRef = firebase.firestore().collection('exercises')
 
-    async function _getWorkoutData() {
-            try{
-                let obj = {}
-                await entityRef.get().then(doc => {
-                    for (const [key, value] of Object.entries(doc.data())) {
-                        
-                        if(key != 'authorID' && key != 'text' && key != 'createdAt')
-                            obj[key] =  value;
-                      }
-
-                      setWeeks(obj)
-                })
-            }
-            catch (err) {
-                console.log(err);
-            }
-    }
-
     useEffect(() => {
-        entityRef.get().then(doc => {
+        try {
             let obj = {}
-            for (const [key, value] of Object.entries(doc.data())) {
-                
-                if(key != 'authorID' && key != 'text' && key != 'createdAt')
-                    weeks[key] =  value;
-              }
-              console.log(weeks)
-        })
-        error => {
-            console.log(error)
+            entityRef.doc(workoutID).get().then(doc => {
+                let obj = {}
+                for (const [key, value] of Object.entries(doc.data())) {
+                    if(key != 'authorID' && key != 'text' && key != 'createdAt')
+                        obj[key] =  value;
+                }
+                setWeeks(obj)
+            })
         }
-    }, [])
+        catch (err) {
+            console.log(err);
+        }
+    }, [weeks])
 
     const onAddButtonPress = () => {
         setExerciseName('test')
@@ -93,9 +77,9 @@ export default function WorkoutsHome(props) {
             <View>
                 <TouchableOpacity onPress={() => {props.navigation.navigate(item)}}>
                     <Card containerStyle={styles.cardContainer}>
-                    {/*react-native-elements Card*/ console.log(item)}
+                    {/*react-native-elements Card*/ }
                         <Text style={styles.card}>
-                            {item}
+                            {Object.values(item)}
                         </Text>
                     </Card>
                 </TouchableOpacity>
