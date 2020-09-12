@@ -3,20 +3,19 @@ import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, TouchableHighlig
 import { createStackNavigator } from '@react-navigation/stack'
 import { Card } from 'react-native-elements'
 import { LinearGradient } from 'expo-linear-gradient'
-import { firebase } from '../../../../../../firebase/config'
-import WeeksScreen  from './WeeksScreen/WeeksScreen'
+import { firebase } from '../../../../../../../firebase/config'
 import styles from './styles';
 
-const WorkoutContextStack = createStackNavigator();
+const WeeksContextStack = createStackNavigator();
 
-function WorkoutsHomeView(props) {
+function WeeksHomeView(props) {
 
     const [entityText, setEntityText] = useState('')
     const [workouts, setWorkouts] = useState([])
     const [addModalVisible, setAddModalVisible] = useState(false);
     const [exerciseName, setExerciseName] = useState('')
     const [weeks, setWeeks] = useState({})
-    const [days, setDay] = useState({})
+    const [days, setDays] = useState({})
 
     const userID = props.extraData.id
     const workoutID = props.id
@@ -27,20 +26,13 @@ function WorkoutsHomeView(props) {
 
     useEffect(() => {
         try {
-            let obj = {}
-            entityRef.doc(workoutID).get().then(doc => {
-                let obj = {}
-                for (const [key, value] of Object.entries(doc.data())) {
-                    if(key != 'authorID' && key != 'text' && key != 'createdAt')
-                        obj[key] =  value;
-                }
-                setWeeks(obj)
-            })
+            setDays(props.days)
+            console.log(days)
         }
         catch (err) {
             console.log(err);
         }
-    }, [weeks])
+    }, [days])
 
     const onAddButtonPress = () => {
         setExerciseName('test')
@@ -76,13 +68,14 @@ function WorkoutsHomeView(props) {
     }
 
     const renderEntity = ({item, index}) => {
+        //console.log(item)
         return (
             <View>
                 <TouchableOpacity onPress={() => {props.navigation.navigate(item)}}>
                     <Card containerStyle={styles.cardContainer}>
                     {/*react-native-elements Card*/ }
                         <Text style={styles.card}>
-                            {Object.values(item)}
+                            {item}
                         </Text>
                     </Card>
                 </TouchableOpacity>
@@ -137,10 +130,10 @@ function WorkoutsHomeView(props) {
     return(
         <View style={styles.container}>
             { addModal() }
-            { weeks && (
+            { days && (
                 <View style={styles.listContainer}>
                     <FlatList
-                        data={Object.keys(weeks)}
+                        data={Object.keys(days)}
                         renderItem={renderEntity}
                         keyExtractor={(key) => key}
                         removeClippedSubviews={true}
@@ -180,15 +173,7 @@ export default function WorkoutsHome(props) {
 
     useEffect(() => {
         try {
-            let obj = {}
-            entityRef.doc(workoutID).get().then(doc => {
-                let obj = {}
-                for (const [key, value] of Object.entries(doc.data())) {
-                    if(key != 'authorID' && key != 'text' && key != 'createdAt')
-                        obj[key] =  value;
-                }
-                setWeeks(obj)
-            })
+            setDays(Object.values(props))
         }
         catch (err) {
             console.log(err);
@@ -228,27 +213,22 @@ export default function WorkoutsHome(props) {
     }
 
     const weeksNav = ((item) => {
-        return (
-            <WorkoutContextStack.Screen name={item} key={item}
+        //console.log(item)
+        /*return (
+            <WeeksContextStack.Screen name={item} key={item}
                 children={() =>
-                    <WeeksScreen {...props}
-                        name={item}
-                        id={item}
-                        days={weeks[item]}
-                        options={{
-                            headerTitle: Object.values(item),
-                        }}
-                    />}
+                   <Text>{item}</Text>
+                }
             />
-        )
+        )*/
     })
 
     return(
-        <WorkoutContextStack.Navigator>
-            <WorkoutContextStack.Screen name="workouts" children={() =><WorkoutsHomeView {...props} />} />
+        <WeeksContextStack.Navigator>
+            <WeeksContextStack.Screen name="workouts" children={() =><WeeksHomeView {...props} />} />
             {
-                Object.keys(weeks).map(weeksNav)
+                workouts.map(weeksNav)
             }
-        </WorkoutContextStack.Navigator>
+        </WeeksContextStack.Navigator>
     );
 }
